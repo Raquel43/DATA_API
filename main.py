@@ -3,25 +3,11 @@ import requests
 import json
 import time
 import re
-from typing import Optional
-from pydantic import BaseModel
+
 # define global variable
 selection=0
 
-class BikeUpdate(BaseModel):
-    id:Optional[int]
-    model: Optional[str]
-    brand: Optional[str]
-    features: Optional[str]
-    year: Optional[int]
-    size: Optional[int]
-    availability: Optional[bool]
-    price: Optional[int]
-    type_currency: Optional[str]
-    latitude: Optional[float]
-    length: Optional[float]
 
-    location: Optional[dict]
 # Function test. Displays the first element of the document
 def test():
     url = "https://data.mongodb-api.com/app/data-ftfni/endpoint/data/v1/action/findOne"
@@ -473,7 +459,7 @@ while selection != "0":
         type_currency=input("Choose type_currency(example €,$): ")
         latitude=float(input("Choose latitude: "))
         length=float(input("Choose length: "))
-        test7(id, model, brand, features, year, size, availability, price, type_currency, latitude, length)
+        test7(id, model, brand, features, int(year), size, bool(availability), int(price), type_currency, float(latitude), float(length))
         time.sleep(1)
         print("Document created")
         print("----------------")
@@ -518,7 +504,7 @@ while selection != "0":
             size=input("Choose size: ")
             if size == "":
                 size =testSize(id)
-            availability=bool(input("Choose availability (true or false): "))
+            availability=input("Choose availability (true or false): ")
             if availability=="":
                 availability=testAva(id)
             price=input("Choose price: ")
@@ -533,12 +519,16 @@ while selection != "0":
             length=input("Choose length: ")
             if length=="":
                 length=testLength(id)
-            test9(id, model, brand, features, year, size, availability, int(price), type_currency, float(latitude), float(length))
+            test9(id, model, brand, features, int(year), size, bool(availability), int(price), type_currency, float(latitude), float(length))
             time.sleep(1)
             print("Document updated")
             print("----------------")
             test4(id)
             time.sleep(6)
             print(" ")
+
+    elif selection == '10':
+            id=int(input("Select a id: "))
+            print(testYear(id))
 
         
