@@ -442,7 +442,7 @@ while selection != "0":
         time.sleep(5)
         print(" ")
     elif selection == "6":
-        key=input("Choose an item to group: (model, brand, size, features)\n")
+        key=input("Choose an item to group: (model, brand, size, features, others...):\n")
         test6(key)
         time.sleep(7)
         print(" ")
